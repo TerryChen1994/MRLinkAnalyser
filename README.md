@@ -1,5 +1,5 @@
 # MRLinkAnalyser
-Analyse index of urls and anchortexts
+Analyse index of urls and anchortexts  
     // 総url数  
 		double a = 0;  
 		// サイト内リンクを含むurl数  
