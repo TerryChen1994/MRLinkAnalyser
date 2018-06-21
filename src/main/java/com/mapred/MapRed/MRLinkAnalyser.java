@@ -25,7 +25,7 @@ public class MRLinkAnalyser {
 		job.setJarByClass(MRLinkAnalyser.class);
 		job.setJobName("MRLinkAnalyser");
 	
-		job.setNumReduceTasks(100);
+		job.setNumReduceTasks(1);
 		
 		FileInputFormat.addInputPaths(job, "/user/s1721710/statistics");
 		FileOutputFormat.setOutputPath(job, new Path("/user/s1721710/result"));
