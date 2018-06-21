@@ -43,26 +43,30 @@ public class MRLinkAnalyserReducer extends Reducer<Text, Text, Text, Text> {
 
 		// サイト内とサイト間リンクいずれかを含むurl数
 		double tag = 0;
+		double x = 0;
+		double y = 0;
 
 		for (Text value : values) {
 			String array[] = value.toString().split("\t");
 			d1 += Double.valueOf(array[0]);
 			d2 += Double.valueOf(array[1]);
 			d3 += Double.valueOf(array[2]);
-			d4 += Double.valueOf(array[3]);
-			d5 += Double.valueOf(array[4]);
+			x += Double.valueOf(array[3]);
+			y += Double.valueOf(array[4]);
+			d4 += x;
+			d5 += y;
 			d6 += Double.valueOf(array[5]);
-
+			
 			a++;
-			if (d2 > 0 && d3 > 0) {
+			if (x > 0 && y > 0) {
 				b++;
 				c++;
 				d++;
 				tag++;
-			} else if (d2 > 0) {
+			} else if (x > 0) {
 				b++;
 				tag++;
-			} else if (d3 > 0) {
+			} else if (y > 0) {
 				c++;
 				tag++;
 			}
