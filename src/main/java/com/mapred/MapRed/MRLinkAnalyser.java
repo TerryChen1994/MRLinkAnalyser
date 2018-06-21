@@ -27,29 +27,13 @@ public class MRLinkAnalyser {
 	
 		job.setNumReduceTasks(100);
 		
-		String prePath = "/user/s1721710/Index/index";
-		String allPath = new String();
-		for(int i = 0; i < 20; i++){
-			String curS = String.valueOf(i);
-			if(i < 10){
-				curS = "0" + curS;
-			}
-			String curPath = prePath + curS;
-			if(i != 19){
-				allPath = allPath + curPath + ",";
-			}else{
-				allPath = allPath + curPath;
-			}
-		}
-		
-		FileInputFormat.addInputPaths(job, allPath);
-		FileOutputFormat.setOutputPath(job, new Path("/user/s1721710/statistics"));
+		FileInputFormat.addInputPaths(job, "/user/s1721710/statistics");
+		FileOutputFormat.setOutputPath(job, new Path("/user/s1721710/result"));
 		FileOutputFormat.setCompressOutput(job, true);  //job使用压缩
 		FileOutputFormat.setOutputCompressorClass(job, GzipCodec.class);
 		
 		job.setMapperClass(MRLinkAnalyserMapper.class);
 		job.setReducerClass(MRLinkAnalyserReducer.class);
-		job.setInputFormatClass(RecordInputFormat.class);
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(Text.class);
 		

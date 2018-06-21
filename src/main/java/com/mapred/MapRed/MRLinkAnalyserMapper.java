@@ -3,12 +3,13 @@ package com.mapred.MapRed;
 import java.io.IOException;
 import java.net.URL;
 
+import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
-public class MRLinkAnalyserMapper extends Mapper<Text, Text, Text, Text> {
+public class MRLinkAnalyserMapper extends Mapper<LongWritable, Text, Text, Text> {
 	
-	public void map(Text key, Text value, Context context) throws IOException, InterruptedException {
+	public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
 		// 総リンク数
 		double a = 0;
 		// サイト内リンク数
@@ -73,7 +74,7 @@ public class MRLinkAnalyserMapper extends Mapper<Text, Text, Text, Text> {
 			context.progress();
 			lastProgressTS = System.currentTimeMillis();
 		}
-		context.write(key, new Text(outputString));
+		context.write(new Text("key"), new Text(outputString));
 
 	}
 
