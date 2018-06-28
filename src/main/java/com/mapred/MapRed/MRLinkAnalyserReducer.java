@@ -51,12 +51,11 @@ public class MRLinkAnalyserReducer extends Reducer<Text, Text, Text, Text> {
 			d1 += Double.valueOf(array[0]);
 			d2 += Double.valueOf(array[1]);
 			d3 += Double.valueOf(array[2]);
-			x += Double.valueOf(array[3]);
-			y += Double.valueOf(array[4]);
+			x = Double.valueOf(array[3]);
+			y = Double.valueOf(array[4]);
 			d4 += x;
 			d5 += y;
 			d6 += Double.valueOf(array[5]);
-			
 			a++;
 			if (x > 0 && y > 0) {
 				b++;
