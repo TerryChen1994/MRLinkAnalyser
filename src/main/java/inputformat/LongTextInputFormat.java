@@ -10,13 +10,13 @@ import org.apache.hadoop.mapreduce.TaskAttemptContext;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 
 
-public class RecordInputFormat extends FileInputFormat<Text, Text>{
+public class LongTextInputFormat extends FileInputFormat<Text, Text>{
 
 	@Override
 	public RecordReader<Text, Text> createRecordReader(InputSplit split, TaskAttemptContext context)
 			throws IOException, InterruptedException {
 		// TODO Auto-generated method stub
-		return new WarcRecordReader();
+		return new LongTextReader();
 	}
 
 	@Override

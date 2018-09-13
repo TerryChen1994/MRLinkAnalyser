@@ -14,7 +14,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 
 import common.ExtendedGZIPInputStream;
 
-public class WarcRecordReader extends RecordReader<Text, Text> {
+public class LongTextReader extends RecordReader<Text, Text> {
 	private long start;
 	private long pos;
 	private long end;
@@ -24,7 +24,7 @@ public class WarcRecordReader extends RecordReader<Text, Text> {
 	private ExtendedGZIPInputStream egzis;
 	private boolean continued;
 
-	public WarcRecordReader() {
+	public LongTextReader() {
 
 	}
 

@@ -9,7 +9,7 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-import inputformat.RecordInputFormat;
+import inputformat.LongTextInputFormat;
 import outputformat.AnchorURLOutputFormat;
 
 public class MRLinkAnalyser {
@@ -49,7 +49,7 @@ public class MRLinkAnalyser {
 		
 		job.setMapperClass(MRLinkAnalyserMapper.class);
 		job.setReducerClass(MRLinkAnalyserReducer.class);
-		job.setInputFormatClass(RecordInputFormat.class);
+		job.setInputFormatClass(LongTextInputFormat.class);
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(Text.class);
 		
