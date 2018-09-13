@@ -9,7 +9,7 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-import inputformat.LongTextInputFormat;
+import inputformat.SkipTextInputFormat;
 import outputformat.AnchorURLOutputFormat;
 
 public class MRLinkAnalyser {
@@ -23,33 +23,16 @@ public class MRLinkAnalyser {
 		
 		Job job = Job.getInstance(conf);
 		job.setJarByClass(MRLinkAnalyser.class);
-		job.setJobName("MRLinkAnalyser");
+		job.setJobName("Analyse IntraServerInverseIndex");
 	
 		job.setNumReduceTasks(100);
 		
-		String prePath = "/user/s1721710/Index/index";
-		String allPath = new String();
-		for(int i = 0; i < 20; i++){
-			String curS = String.valueOf(i);
-			if(i < 10){
-				curS = "0" + curS;
-			}
-			String curPath = prePath + curS;
-			if(i != 19){
-				allPath = allPath + curPath + ",";
-			}else{
-				allPath = allPath + curPath;
-			}
-		}
-		
-		FileInputFormat.addInputPaths(job, allPath);
-		FileOutputFormat.setOutputPath(job, new Path("/user/s1721710/statistics"));
-		FileOutputFormat.setCompressOutput(job, true);  //job使用压缩
-		FileOutputFormat.setOutputCompressorClass(job, GzipCodec.class);
+		FileInputFormat.addInputPath(job, new Path("/user/s1721710/IntraServerInverseIndex"));
+		FileOutputFormat.setOutputPath(job, new Path("/user/s1721710/result/intra"));
 		
 		job.setMapperClass(MRLinkAnalyserMapper.class);
 		job.setReducerClass(MRLinkAnalyserReducer.class);
-		job.setInputFormatClass(LongTextInputFormat.class);
+		job.setInputFormatClass(SkipTextInputFormat.class);
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(Text.class);
 		
